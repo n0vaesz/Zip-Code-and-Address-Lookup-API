@@ -19,3 +19,15 @@ if len(cep) == 8:
     print(uf, cidade, bairro)
 else:
     print("CEP INVÁLIDO")
+
+uf= "RJ"
+cidade = "Rio de Janeiro"
+endereco = "Rio Branco"
+    
+link = f'https://viacep.com.br/ws/{uf}/{cidade}/{endereco}/json/'
+
+requisicao = requests.get(link)
+print(requisicao)
+
+dic_requisicao = requisicao.json()
+print(dic_requisicao)
