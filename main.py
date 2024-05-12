@@ -1,16 +1,21 @@
 import requests
 
-cep = "20090002"
+cep = "20.090-002"
 
-link = f'https://viacep.com.br/ws/{cep}/json/'
+cep = cep.replace("-","").replace(".","").replace(" ", "")
 
-requisicao = requests.get(link)
+if len(cep) == 8:
+    link = f'https://viacep.com.br/ws/{cep}/json/'
 
-print(requisicao)
+    requisicao = requests.get(link)
 
-dic_requisicao = requisicao.json()
+    print(requisicao)
 
-uf = dic_requisicao['uf']
-cidade = dic_requisicao['localidade']
-bairro = dic_requisicao['bairro']
-print(uf, cidade, bairro)
+    dic_requisicao = requisicao.json()
+
+    uf = dic_requisicao['uf']
+    cidade = dic_requisicao['localidade']
+    bairro = dic_requisicao['bairro']
+    print(uf, cidade, bairro)
+else:
+    print("CEP INVÁLIDO")
